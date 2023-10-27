@@ -19,7 +19,7 @@ npm-debug.log
 /public/uploads/temp
 # /public/css/
 /public/fonts/
-/public/images/
+# /public/images/
 /public/modules/
 /public/mix-manifest.json
 .scribe
