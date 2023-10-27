@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="login-form col-md-12 col-xs-12 right-col-content">
-        <img class="row" style="display: block;margin-left: auto;margin-right: auto;" width="100%" src="{{asset('images/logo-blanco.png')}}" alt="grupotyg">
+        <img class="row" style="display: block;margin-left: auto;margin-right: auto;" width="50%" src="{{asset('images/logo-blanco.png')}}" alt="grupotyg">
         <p class="form-header text-white">@lang('lang_v1.login')</p>
         <form method="POST" action="{{ route('login') }}" id="login-form">
             {{ csrf_field() }}
