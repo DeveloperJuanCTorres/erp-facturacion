@@ -1,6 +1,7 @@
 <?php
 return [
-    'spreadsheet' => 'Spreadsheet',Spreadsheet
+    'spreadsheet' => 'Spreadsheet',
+    // Spreadsheet
     'spreadsheet_module' => 'Spreadsheetmodule',
     'sheets' => 'Lakens',
     'my_spreadsheets' => 'Mijn spreadsheets',
