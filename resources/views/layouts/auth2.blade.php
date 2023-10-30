@@ -32,14 +32,14 @@
                     <div style="margin-top: 50%;">
                     <a href="/">
                     @if(file_exists(public_path('uploads/logo.png')))
-                        <img src="/uploads/logo.png" class="img-rounded" alt="Logo" width="150">
+                        <!-- <img src="/uploads/logo.png" class="img-rounded" alt="Logo" width="150"> -->
                     @else
-                       {{ config('app.name', 'ultimatePOS') }}
+                        <!-- config('app.name', 'ultimatePOS')  -->
                     @endif 
                     </a>
                     <br/>
                     @if(!empty(config('constants.app_title')))
-                        <small>{{config('constants.app_title')}}</small>
+                        <!-- <small>{{config('constants.app_title')}}</small> -->
                     @endif
                     </div>
                 </div>
