@@ -27,7 +27,7 @@
     @endif
     <div class="container-fluid">
         <div class="row eq-height-row">
-            <div class="col-md-5 col-sm-5 hidden-xs left-col eq-height-col" >
+            <div class="col-md-7 col-sm-7 hidden-xs left-col eq-height-col" >
                 <div class="left-col-content login-header"> 
                     <div style="margin-top: 50%;">
                     <a href="/">
@@ -44,7 +44,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-7 col-sm-7 col-xs-12 right-col eq-height-col">
+            <div class="col-md-5 col-sm-5 col-xs-12 right-col eq-height-col">
                 <div class="row">
                 <div class="col-md-3 col-xs-4" style="text-align: left;">
                     <select class="form-control input-sm" id="change_lang" style="margin: 10px;">
