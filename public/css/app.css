@@ -253,7 +253,7 @@ legend {
   border-bottom: none;
 }
 .left-col {
-  background: linear-gradient(0deg,rgba(0, 0, 0, 0.76),rgba(51, 51, 51, 0.32)),url(../img/home-bg-2.png); 
+  background: linear-gradient(0deg,rgba(0, 0, 0, 0.76),rgba(51, 51, 51, 0.32)),url(../img/home-bg.jpg); 
   text-align: center;
   background-size: cover;
   background-position: center;
@@ -277,7 +277,7 @@ legend {
   padding: 6px 52px !important;
 }
 .right-col {
-  background-color: #011133;
+  background-color: #243949;
   height: 100%;
   min-height: 100vh;
 }
