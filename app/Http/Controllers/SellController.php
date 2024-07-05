@@ -1937,16 +1937,16 @@ class SellController extends Controller
                     'type',
                     '
                     @if($type == "sell")  
-                        Factura electr贸nica
+                        Factura electrónica
                     @elseif($type == "sell_return")
-                        Nota de cr茅dito
+                        Nota de crédito
                     @endif
                     &nbsp;'  
                 )
                 ->addColumn(
                     'pdf',
                     '  
-                    @if(!is_null($response_sunat))                     
+                    @if(!is_null($response_sunat) && $status_sunat == 1)                     
                         <a href="/sunatpdf/{{$id}}" class="btn btn-xs btn-primary">PDF</a>
                         &nbsp;
                     @endif'  
@@ -1954,7 +1954,7 @@ class SellController extends Controller
                 ->addColumn(
                     'xml',
                     '
-                    @if(!is_null($response_sunat)) 
+                    @if(!is_null($response_sunat) && $status_sunat == 1) 
                         <a href="/sunatxml/{{$id}}" class="btn btn-xs btn-info">XML</a>
                         &nbsp;
                     @endif'
@@ -1962,7 +1962,7 @@ class SellController extends Controller
                 ->addColumn(
                     'cdr',
                     '
-                    @if(!is_null($response_sunat)) 
+                    @if(!is_null($response_sunat) && $status_sunat == 1) 
                         <a href="/sunatcdr/{{$id}}" class="btn btn-xs btn-warning">CDR</a>                  
                         &nbsp;
                     @endif'
@@ -2243,7 +2243,9 @@ class SellController extends Controller
                 ->select('units.short_name as unit_code',
                     'products.name as product',
                     'transaction_sell_lines.quantity as quantity',
-                    'transaction_sell_lines.unit_price as unit_price')->get();
+                    'transaction_sell_lines.unit_price as unit_price',
+                    'transaction_sell_lines.unit_price_inc_tax as unit_price_inc_tax',
+                    'transaction_sell_lines.item_tax as item_tax')->get();
 
                 foreach ($query as $key => $value) {
                     $product = array(
@@ -2252,19 +2254,20 @@ class SellController extends Controller
                         "codigo_producto_sunat"=> "10000000",
                         "descripcion"=> $value->product,
                         "cantidad"=> $value->quantity,
-                        "valor_unitario"=> number_format($value->unit_price,10),
-                        "precio_unitario"=> number_format(($value->unit_price*1.18),10),
+                        "valor_unitario"=> number_format($value->unit_price,2),
+                        "precio_unitario"=> number_format(($value->unit_price_inc_tax),2),
                         "descuento"=> "",
                         "subtotal"=> number_format(($value->unit_price*$value->quantity),2),
                         "tipo_de_igv"=> 1,
-                        "igv"=> number_format(($value->unit_price*0.18*$value->quantity),2),
-                        "total"=> number_format(($value->unit_price*1.18*$value->quantity),2),
+                        "igv"=> number_format(($value->item_tax*$value->quantity),2),
+                        "total"=> number_format(($value->unit_price_inc_tax*$value->quantity),2),
                         "anticipo_regularizacion"=> false,
                         "anticipo_documento_serie"=> "",
                         "anticipo_documento_numero"=> ""
                     );
                     array_push($products, $product);
-                    $total_gravada = ($value->unit_price*$value->quantity) + $total_gravada;
+                    $total_gravada = number_format(($value->unit_price*$value->quantity),2) + $total_gravada;
+                    $total_igv = number_format(($value->item_tax*$value->quantity),2) + $total_igv;
                 }
             }
             elseif($transaction->type == "sell_return")
@@ -2353,7 +2356,7 @@ class SellController extends Controller
 
             }      
             
-            $total_igv = $total_gravada*0.18;
+            // $total_igv = round(($total_gravada*0.18),2);
             $date_now = Carbon::now()->format('d-m-Y');
             $store = array(
                 "operacion"=> "generar_comprobante",
@@ -2412,13 +2415,13 @@ class SellController extends Controller
                 
             );
            
-            // $respuesta = Http::withHeaders(
-            //     ['Authorization' => 'ae08473db907470eacd76306bb8c3edd8d287017bfc345ddbe0e10755d4da85e'])
-            // ->post('https://api.nubefact.com/api/v1/9f7c7c55-9c54-4096-af7b-43690e4750e6', $store);   
-
             $respuesta = Http::withHeaders(
-                ['Authorization' => 'd0a80b88cde446d092025465bdb4673e103a0d881ca6479ebbab10664dbc5677'])
-            ->post('https://demo.nubefact.com/api/v1/03989d1a-6c8c-4b71-b1cd-7d37001deaa0', $store);
+                ['Authorization' => 'ae08473db907470eacd76306bb8c3edd8d287017bfc345ddbe0e10755d4da85e'])
+            ->post('https://api.nubefact.com/api/v1/9f7c7c55-9c54-4096-af7b-43690e4750e6', $store);   
+
+            // $respuesta = Http::withHeaders(
+            //     ['Authorization' => 'd0a80b88cde446d092025465bdb4673e103a0d881ca6479ebbab10664dbc5677'])
+            // ->post('https://demo.nubefact.com/api/v1/03989d1a-6c8c-4b71-b1cd-7d37001deaa0', $store);
 
             if ($respuesta->status()==200) {
                 $transaction->response_sunat = $respuesta;
