@@ -2354,7 +2354,7 @@ class SellController extends Controller
             }      
             
             $total_igv = $total_gravada*0.18;
-            $date_now = \Carbon::now()->format('d-m-Y');
+            $date_now = Carbon::now()->format('d-m-Y');
             $store = array(
                 "operacion"=> "generar_comprobante",
                 "tipo_de_comprobante"=> $tipo_comprobante,
@@ -2412,10 +2412,13 @@ class SellController extends Controller
                 
             );
            
-            $respuesta = Http::withHeaders(
-                ['Authorization' => 'ae08473db907470eacd76306bb8c3edd8d287017bfc345ddbe0e10755d4da85e'])
-            ->post('https://api.nubefact.com/api/v1/9f7c7c55-9c54-4096-af7b-43690e4750e6', $store);   
+            // $respuesta = Http::withHeaders(
+            //     ['Authorization' => 'ae08473db907470eacd76306bb8c3edd8d287017bfc345ddbe0e10755d4da85e'])
+            // ->post('https://api.nubefact.com/api/v1/9f7c7c55-9c54-4096-af7b-43690e4750e6', $store);   
 
+            $respuesta = Http::withHeaders(
+                ['Authorization' => 'd0a80b88cde446d092025465bdb4673e103a0d881ca6479ebbab10664dbc5677'])
+            ->post('https://demo.nubefact.com/api/v1/03989d1a-6c8c-4b71-b1cd-7d37001deaa0', $store);
 
             if ($respuesta->status()==200) {
                 $transaction->response_sunat = $respuesta;
