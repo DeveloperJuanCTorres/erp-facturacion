@@ -2212,9 +2212,12 @@ class SellController extends Controller
     public function enviarsunat(Request $request)
     {        
         try {
+            $business_id = request()->session()->get('user.business_id');
+            $business = Business::where('id', $business_id)->get();
             $id = $request->id;
             $tipo_nota_value = $request->motivo_id;
             $transaction = Transaction::find($id);
+            $contact = Contact::find($transaction->contact_id);
             $invoice = $transaction->invoice_no;
             $invoice_sus = intval(substr($invoice, 6, 3));
             $serie = substr($invoice, 0, 4);
@@ -2365,10 +2368,10 @@ class SellController extends Controller
                 "numero"=> $invoice_sus,
                 "sunat_transaction"=> 1,
                 "cliente_tipo_de_documento"=> 6,
-                "cliente_numero_de_documento"=> "20600695771",
-                "cliente_denominacion"=> "NUBEFACT SA",
-                "cliente_direccion"=> "CALLE LIBERTAD 116 MIRAFLORES - LIMA - PERU",
-                "cliente_email"=> "tucliente@gmail.com",
+                "cliente_numero_de_documento"=> $contact->contact_id,
+                "cliente_denominacion"=> $contact->supplier_business_name,
+                "cliente_direccion"=> $contact->address_line_1,
+                "cliente_email"=> $contact->email,
                 "cliente_email_1"=> "",
                 "cliente_email_2"=> "",
                 "fecha_de_emision"=> $date_now,
@@ -2415,9 +2418,13 @@ class SellController extends Controller
                 
             );
            
+            // $respuesta = Http::withHeaders(
+            //     ['Authorization' => 'ae08473db907470eacd76306bb8c3edd8d287017bfc345ddbe0e10755d4da85e'])
+            // ->post('https://api.nubefact.com/api/v1/9f7c7c55-9c54-4096-af7b-43690e4750e6', $store);  
+            
             $respuesta = Http::withHeaders(
-                ['Authorization' => 'ae08473db907470eacd76306bb8c3edd8d287017bfc345ddbe0e10755d4da85e'])
-            ->post('https://api.nubefact.com/api/v1/9f7c7c55-9c54-4096-af7b-43690e4750e6', $store);   
+                ['Authorization' => $business[0]['token_nubefact']])
+            ->post($business[0]['ruta_nubefact'], $store);
 
             if ($respuesta->status()==200) {
                 $transaction->response_sunat = $respuesta;
@@ -2436,7 +2443,8 @@ class SellController extends Controller
 
         } catch (\Throwable $th) {
             
-            return response()->json(['status' => false, 'msg' => "Error!!, Try again later"]);
+            // return response()->json(['status' => false, 'msg' => "Error!!, Try again later"]);
+            return response()->json(['status' => false, 'msg' => $business[0]['token_nubefact']]);
         }
        
     }

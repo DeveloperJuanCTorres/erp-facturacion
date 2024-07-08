@@ -5039,6 +5039,7 @@ class TransactionUtil extends Util
                     'tos.id'
                 )
                 ->where('transactions.business_id', $business_id)
+                // ->where(DB::raw("SUBSTRING('transactions.invoice_no', 0, 4)"), '=', 'FFF1')
                 ->where(function ($q) {
                     $q->where('transactions.type', 'sell')->orWhere('transactions.type', 'sell_return');
                 })
