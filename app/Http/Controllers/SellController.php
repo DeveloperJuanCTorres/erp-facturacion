@@ -2446,7 +2446,7 @@ class SellController extends Controller
         } catch (\Throwable $th) {
             
             // return response()->json(['status' => false, 'msg' => "Error!!, Try again later"]);
-            return response()->json(['status' => false, 'msg' => $business[0]['token_nubefact'] . $products]);
+            return response()->json(['status' => false, 'msg' => $business[0]['token_nubefact'] . json_encode($products)]);
         }
        
     }
