@@ -2251,19 +2251,21 @@ class SellController extends Controller
                     'transaction_sell_lines.item_tax as item_tax')->get();
 
                 foreach ($query as $key => $value) {
+                    $valor_unitario = $value->unit_price_inc_tax/1.18;
+                    $igv = ($value->unit_price_inc_tax*$value->quantity) - (($value->unit_price_inc_tax*$value->quantity)/1.18);
                     $product = array(
                         "unidad_de_medida"=> $value->unit_code,
                         "codigo"=> "001",
                         "codigo_producto_sunat"=> "10000000",
                         "descripcion"=> $value->product,
                         "cantidad"=> $value->quantity,
-                        "valor_unitario"=> ($value->unit_price_inc_tax/1.18),
+                        "valor_unitario"=> $valor_unitario,
                         //  number_format($value->unit_price,2),
                         "precio_unitario"=> ($value->unit_price_inc_tax),
                         "descuento"=> "",
-                        "subtotal"=> (($value->unit_price_inc_tax/1.18)*$value->quantity),
+                        "subtotal"=> ($valor_unitario*$value->quantity),
                         "tipo_de_igv"=> 1,
-                        "igv"=> ($value->unit_price_inc_tax - ($value->unit_price_inc_tax/1.18))*$value->quantity,
+                        "igv"=> $igv,
                         // number_format(($value->item_tax*$value->quantity),2)
                         "total"=> number_format(($value->unit_price_inc_tax*$value->quantity),2),
                         "anticipo_regularizacion"=> false,
@@ -2272,7 +2274,7 @@ class SellController extends Controller
                     );
                     array_push($products, $product);
                     $total_gravada = (($value->unit_price_inc_tax/1.18)*$value->quantity) + $total_gravada;
-                    $total_igv = (($value->unit_price_inc_tax - ($value->unit_price_inc_tax/1.18))*$value->quantity) + $total_igv;
+                    $total_igv = $igv + $total_igv;
                 }
             }
             elseif($transaction->type == "sell_return")
