@@ -2272,7 +2272,7 @@ class SellController extends Controller
                     );
                     array_push($products, $product);
                     $total_gravada = number_format((($value->unit_price_inc_tax/1.18)*$value->quantity),2) + $total_gravada;
-                    $total_igv = number_format((($value->unit_price_inc_tax - ($value->unit_price_inc_tax/1.18))*$value->quantity),2) + $total_igv;
+                    $total_igv = (($value->unit_price_inc_tax - ($value->unit_price_inc_tax/1.18))*$value->quantity) + $total_igv;
                 }
             }
             elseif($transaction->type == "sell_return")
