@@ -2259,9 +2259,9 @@ class SellController extends Controller
                         "cantidad"=> $value->quantity,
                         "valor_unitario"=> ($value->unit_price_inc_tax/1.18),
                         //  number_format($value->unit_price,2),
-                        "precio_unitario"=> number_format(($value->unit_price_inc_tax),2),
+                        "precio_unitario"=> ($value->unit_price_inc_tax),
                         "descuento"=> "",
-                        "subtotal"=> number_format((($value->unit_price_inc_tax/1.18)*$value->quantity),2),
+                        "subtotal"=> (($value->unit_price_inc_tax/1.18)*$value->quantity),
                         "tipo_de_igv"=> 1,
                         "igv"=> ($value->unit_price_inc_tax - ($value->unit_price_inc_tax/1.18))*$value->quantity,
                         // number_format(($value->item_tax*$value->quantity),2)
