@@ -2257,20 +2257,22 @@ class SellController extends Controller
                         "codigo_producto_sunat"=> "10000000",
                         "descripcion"=> $value->product,
                         "cantidad"=> $value->quantity,
-                        "valor_unitario"=> number_format($value->unit_price,2),
+                        "valor_unitario"=> ($value->unit_price_inc_tax/1.18),
+                        //  number_format($value->unit_price,2),
                         "precio_unitario"=> number_format(($value->unit_price_inc_tax),2),
                         "descuento"=> "",
-                        "subtotal"=> number_format(($value->unit_price*$value->quantity),2),
+                        "subtotal"=> number_format((($value->unit_price_inc_tax/1.18)*$value->quantity),2),
                         "tipo_de_igv"=> 1,
-                        "igv"=> number_format(($value->item_tax*$value->quantity),2),
+                        "igv"=> ($value->unit_price_inc_tax - ($value->unit_price_inc_tax/1.18))*$value->quantity,
+                        // number_format(($value->item_tax*$value->quantity),2)
                         "total"=> number_format(($value->unit_price_inc_tax*$value->quantity),2),
                         "anticipo_regularizacion"=> false,
                         "anticipo_documento_serie"=> "",
                         "anticipo_documento_numero"=> ""
                     );
                     array_push($products, $product);
-                    $total_gravada = number_format(($value->unit_price*$value->quantity),2) + $total_gravada;
-                    $total_igv = number_format(($value->item_tax*$value->quantity),2) + $total_igv;
+                    $total_gravada = number_format((($value->unit_price_inc_tax/1.18)*$value->quantity),2) + $total_gravada;
+                    $total_igv = number_format((($value->unit_price_inc_tax - ($value->unit_price_inc_tax/1.18))*$value->quantity),2) + $total_igv;
                 }
             }
             elseif($transaction->type == "sell_return")
