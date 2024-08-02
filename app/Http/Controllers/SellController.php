@@ -2439,14 +2439,14 @@ class SellController extends Controller
             else
             {
                 $resp = json_decode($respuesta);
-                return response()->json(['status' => false, 'msg' => $resp->errors . $products]);
+                return response()->json(['status' => false, 'msg' => $resp->errors . json_encode($products)]);
             }
 
 
         } catch (\Throwable $th) {
             
             // return response()->json(['status' => false, 'msg' => "Error!!, Try again later"]);
-            return response()->json(['status' => false, 'msg' => $business[0]['token_nubefact'] . json_decode($products[1])]);
+            return response()->json(['status' => false, 'msg' => $business[0]['token_nubefact']]);
         }
        
     }
