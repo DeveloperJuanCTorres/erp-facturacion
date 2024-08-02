@@ -2267,7 +2267,7 @@ class SellController extends Controller
                         "tipo_de_igv"=> 1,
                         "igv"=> $igv,
                         // number_format(($value->item_tax*$value->quantity),2)
-                        "total"=> number_format(($value->unit_price_inc_tax*$value->quantity),2),
+                        "total"=> ($value->unit_price_inc_tax*$value->quantity),
                         "anticipo_regularizacion"=> false,
                         "anticipo_documento_serie"=> "",
                         "anticipo_documento_numero"=> ""
