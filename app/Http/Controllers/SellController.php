@@ -2263,7 +2263,7 @@ class SellController extends Controller
                         "descuento"=> "",
                         "subtotal"=> (($value->unit_price_inc_tax/1.18)*$value->quantity),
                         "tipo_de_igv"=> 1,
-                        "igv"=> ($value->unit_price_inc_tax - ($value->unit_price_inc_tax/1.18))*$value->quantity,
+                        "igv"=> number_format(($value->unit_price_inc_tax - ($value->unit_price_inc_tax/1.18)),2)*$value->quantity,
                         // number_format(($value->item_tax*$value->quantity),2)
                         "total"=> number_format(($value->unit_price_inc_tax*$value->quantity),2),
                         "anticipo_regularizacion"=> false,
@@ -2272,7 +2272,7 @@ class SellController extends Controller
                     );
                     array_push($products, $product);
                     $total_gravada = (($value->unit_price_inc_tax/1.18)*$value->quantity) + $total_gravada;
-                    $total_igv = (($value->unit_price_inc_tax - ($value->unit_price_inc_tax/1.18))*$value->quantity) + $total_igv;
+                    $total_igv = (number_format(($value->unit_price_inc_tax - ($value->unit_price_inc_tax/1.18)),2)*$value->quantity) + $total_igv;
                 }
             }
             elseif($transaction->type == "sell_return")
