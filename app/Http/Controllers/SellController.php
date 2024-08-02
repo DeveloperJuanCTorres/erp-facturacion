@@ -2271,7 +2271,7 @@ class SellController extends Controller
                         "anticipo_documento_numero"=> ""
                     );
                     array_push($products, $product);
-                    $total_gravada = number_format((($value->unit_price_inc_tax/1.18)*$value->quantity),2) + $total_gravada;
+                    $total_gravada = (($value->unit_price_inc_tax/1.18)*$value->quantity) + $total_gravada;
                     $total_igv = (($value->unit_price_inc_tax - ($value->unit_price_inc_tax/1.18))*$value->quantity) + $total_igv;
                 }
             }
@@ -2384,13 +2384,13 @@ class SellController extends Controller
                 "descuento_global"=> "",
                 "total_descuento"=> "",
                 "total_anticipo"=> "",
-                "total_gravada"=> number_format($total_gravada,2),
+                "total_gravada"=> $total_gravada,
                 "total_inafecta"=> "",
                 "total_exonerada"=> "",
                 "total_igv"=> $total_igv,
                 "total_gratuita"=> "",
                 "total_otros_cargos"=> "",
-                "total"=> number_format(($total_gravada + $total_igv),2),
+                "total"=> ($total_gravada + $total_igv),
                 "percepcion_tipo"=> "",
                 "percepcion_base_imponible"=> "",
                 "total_percepcion"=> "",
