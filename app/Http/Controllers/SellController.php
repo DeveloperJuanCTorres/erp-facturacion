@@ -2387,7 +2387,7 @@ class SellController extends Controller
                 "total_gravada"=> number_format($total_gravada,2),
                 "total_inafecta"=> "",
                 "total_exonerada"=> "",
-                "total_igv"=> number_format($total_igv,2),
+                "total_igv"=> $total_igv,
                 "total_gratuita"=> "",
                 "total_otros_cargos"=> "",
                 "total"=> number_format(($total_gravada + $total_igv),2),
