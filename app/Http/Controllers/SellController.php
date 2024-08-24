@@ -2371,7 +2371,7 @@ class SellController extends Controller
                 "serie"=> $serie,
                 "numero"=> $invoice_sus,
                 "sunat_transaction"=> 1,
-                "cliente_tipo_de_documento"=> 6,
+                "cliente_tipo_de_documento"=> "-",
                 "cliente_numero_de_documento"=> $contact->contact_id,
                 "cliente_denominacion"=> $contact->supplier_business_name,
                 "cliente_direccion"=> $contact->address_line_1,
