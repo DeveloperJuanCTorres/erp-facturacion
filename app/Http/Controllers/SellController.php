@@ -2226,6 +2226,7 @@ class SellController extends Controller
             $serie_modifica = "";
             $numero_modifica = "";
             $tipo_nota_credito = "";
+            $cliente_tipo_doc = "";
 
             $products = [];
             $total_gravada = 0;
@@ -2235,9 +2236,11 @@ class SellController extends Controller
             {
                 if ($serie == 'FFF1') {
                     $tipo_comprobante = 1;
+                    $cliente_tipo_doc = 6;
                 }elseif($serie == "BBB1")
                 {
                     $tipo_comprobante = 2;
+                    $cliente_tipo_doc = 1;
                 }
 
                 $query = TransactionSellLine::leftJoin('products','transaction_sell_lines.product_id','=','products.id')
@@ -2371,10 +2374,9 @@ class SellController extends Controller
                 "serie"=> $serie,
                 "numero"=> $invoice_sus,
                 "sunat_transaction"=> 1,
-                "cliente_tipo_de_documento"=> "-",
+                "cliente_tipo_de_documento"=> $cliente_tipo_doc,
                 "cliente_numero_de_documento"=> $contact->contact_id,
-                "cliente_denominacion"=> "CLIENTE VARIOS",
-                // "cliente_denominacion"=> $contact->supplier_business_name,
+                "cliente_denominacion"=> $contact->supplier_business_name,
                 "cliente_direccion"=> $contact->address_line_1,
                 "cliente_email"=> $contact->email,
                 "cliente_email_1"=> "",
