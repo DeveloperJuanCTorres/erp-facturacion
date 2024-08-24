@@ -2376,7 +2376,7 @@ class SellController extends Controller
                 "sunat_transaction"=> 1,
                 "cliente_tipo_de_documento"=> $cliente_tipo_doc,
                 "cliente_numero_de_documento"=> $contact->contact_id,
-                "cliente_denominacion"=> $contact->supplier_business_name,
+                "cliente_denominacion"=> $contact->supplier_business_name + $contact->name,
                 "cliente_direccion"=> $contact->address_line_1,
                 "cliente_email"=> $contact->email,
                 "cliente_email_1"=> "",
