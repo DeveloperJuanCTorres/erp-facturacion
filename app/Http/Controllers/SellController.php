@@ -2240,8 +2240,15 @@ class SellController extends Controller
                     $cliente_tipo_doc = 6;                    
                 }elseif($serie == "BBB1")
                 {
-                    $tipo_comprobante = 2;
-                    $cliente_tipo_doc = 1;                    
+                    $tipo_comprobante = 2;   
+                    if ($contact->contact_id == "-")      
+                    {
+                        $cliente_tipo_doc = "-"; 
+                    }
+                    else
+                    {
+                        $cliente_tipo_doc = 1; 
+                    }                                       
                 }
 
                 if ($contact->type == "supplier")
@@ -2385,7 +2392,9 @@ class SellController extends Controller
                 "serie"=> $serie,
                 "numero"=> $invoice_sus,
                 "sunat_transaction"=> 1,
+
                 "cliente_tipo_de_documento"=> $cliente_tipo_doc,
+
                 "cliente_numero_de_documento"=> $contact->contact_id,
                 "cliente_denominacion"=> $cliente_name,
                 "cliente_direccion"=> $contact->address_line_1,
