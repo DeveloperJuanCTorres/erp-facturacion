@@ -2464,7 +2464,7 @@ class SellController extends Controller
             else
             {
                 $resp = json_decode($respuesta);
-                return response()->json(['status' => false, 'msg' => $resp->errors . json_encode($store)]);
+                return response()->json(['status' => false, 'msg' => $resp->errors . json_encode($store) . $contact->type]);
             }
 
 
