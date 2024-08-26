@@ -2251,15 +2251,15 @@ class SellController extends Controller
                     }                                       
                 }
 
-                if ($contact->type == "supplier")
-                {
-                    $cliente_name = $contact->supplier_business_name;
-                }
+                // if ($contact->type == "supplier")
+                // {
+                //     $cliente_name = $contact->supplier_business_name;
+                // }
 
-                if ($contact->type == "customer")
-                {
-                    $cliente_name = $contact->name;
-                }
+                // if ($contact->type == "customer")
+                // {
+                //     $cliente_name = $contact->name;
+                // }
 
                 $query = TransactionSellLine::leftJoin('products','transaction_sell_lines.product_id','=','products.id')
                 ->join('units', 'products.unit_id', '=', 'units.id')
@@ -2396,7 +2396,7 @@ class SellController extends Controller
                 "cliente_tipo_de_documento"=> $cliente_tipo_doc,
 
                 "cliente_numero_de_documento"=> $contact->contact_id,
-                "cliente_denominacion"=> $cliente_name,
+                "cliente_denominacion"=> $cliente_name . $contact->supplier_business_name,
                 "cliente_direccion"=> $contact->address_line_1,
                 "cliente_email"=> $contact->email,
                 "cliente_email_1"=> "",
