@@ -163,7 +163,7 @@ return [
     'search_product' => 'Buscar producto',
     'product_sell_report' => 'Informe de venta del producto',
     'unit_sale_price' => 'Precio de venta de la unidad',
-    'contact_id' => 'ID de contacto',
+    'contact_id' => 'DNI / RUC',
     'category_code_help' => 'El código de categoría es el mismo que el <b> código HSN </b>',
     'sub_heading_line' => 'Linea de la subpartida :_number_', /* modified */
     'date_label' => 'Etiqueta de fecha',
