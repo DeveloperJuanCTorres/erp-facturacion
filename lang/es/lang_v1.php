@@ -630,7 +630,7 @@ return [
     'price' => 'Precio',
     'auto_backup_instruction' => 'Para habilitar la copia de seguridad automática, debe configurar un trabajo cron con este comando',
     'gross_profit' => 'Beneficio bruto',
-    'single' => 'Soltero',
+    'single' => 'Simple',
     'variable' => 'Variable',
     'total_purchase_price' => 'Precio total de compra',
     'total_sell_price' => 'Precio de venta total',
