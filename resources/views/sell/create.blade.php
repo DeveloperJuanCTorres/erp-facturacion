@@ -269,7 +269,7 @@
 		        		}
 		        	@endphp
 
-		        	<div class="col-md-4">
+		        	<div class="col-md-3">
 				        <div class="form-group">
 				            {!! Form::label('custom_field_1', $label_1 ) !!}
 				            {!! Form::text('custom_field_1', null, ['class' => 'form-control','placeholder' => $custom_field_1_label, 'required' => $is_custom_field_1_required]); !!}
@@ -284,7 +284,7 @@
 		        		}
 		        	@endphp
 
-		        	<div class="col-md-4">
+		        	<div class="col-md-3">
 				        <div class="form-group">
 				            {!! Form::label('custom_field_2', $label_2 ) !!}
 				            {!! Form::text('custom_field_2', null, ['class' => 'form-control','placeholder' => $custom_field_2_label, 'required' => $is_custom_field_2_required]); !!}
