@@ -324,37 +324,37 @@
 					<div class="col-md-3">
 				        <div class="form-group">
 				            {!! Form::label('custom_field_6', 'Categoría' ) !!}
-				            {!! Form::text('custom_field_6', null, ['class' => 'form-control','placeholder' => 'Categoría', 'required' => $is_custom_field_4_required]); !!}
+				            {!! Form::text('custom_field_categoria', null, ['class' => 'form-control','placeholder' => 'Categoría', 'required' => $is_custom_field_4_required]); !!}
 				        </div>
 				    </div>
 					<div class="col-md-3">
 				        <div class="form-group">
-				            {!! Form::label('custom_field_7', 'Año Fabricación' ) !!}
-				            {!! Form::text('custom_field_7', null, ['class' => 'form-control','placeholder' => 'Año Fabricación', 'required' => $is_custom_field_4_required]); !!}
+				            {!! Form::label('custom_field_fabricacion', 'Año Fabricación' ) !!}
+				            {!! Form::text('custom_field_fabricacion', null, ['class' => 'form-control','placeholder' => 'Año Fabricación', 'required' => $is_custom_field_4_required]); !!}
 				        </div>
 				    </div>
 					<div class="col-md-3">
 				        <div class="form-group">
-				            {!! Form::label('custom_field_8', 'Carrocería' ) !!}
-				            {!! Form::text('custom_field_8', null, ['class' => 'form-control','placeholder' => 'Carrocería', 'required' => $is_custom_field_4_required]); !!}
+				            {!! Form::label('custom_field_carroceria', 'Carrocería' ) !!}
+				            {!! Form::text('custom_field_carroceria', null, ['class' => 'form-control','placeholder' => 'Carrocería', 'required' => $is_custom_field_4_required]); !!}
 				        </div>
 				    </div>
 					<div class="col-md-3">
 				        <div class="form-group">
-				            {!! Form::label('custom_field_10', 'Uso' ) !!}
-				            {!! Form::text('custom_field_10', null, ['class' => 'form-control','placeholder' => 'Uso', 'required' => $is_custom_field_4_required]); !!}
+				            {!! Form::label('custom_field_uso', 'Uso' ) !!}
+				            {!! Form::text('custom_field_uso', null, ['class' => 'form-control','placeholder' => 'Uso', 'required' => $is_custom_field_4_required]); !!}
 				        </div>
 				    </div>
 					<div class="col-md-3">
 				        <div class="form-group">
-				            {!! Form::label('custom_field_11', 'Nº Poliza' ) !!}
-				            {!! Form::text('custom_field_11', null, ['class' => 'form-control','placeholder' => 'Nº Poliza', 'required' => $is_custom_field_4_required]); !!}
+				            {!! Form::label('custom_field_poliza', 'Nº Poliza' ) !!}
+				            {!! Form::text('custom_field_poliza', null, ['class' => 'form-control','placeholder' => 'Nº Poliza', 'required' => $is_custom_field_4_required]); !!}
 				        </div>
 				    </div>
 					<div class="col-md-3">
 				        <div class="form-group">
-				            {!! Form::label('custom_field_11', 'Actividad Económica' ) !!}
-				            {!! Form::text('custom_field_11', null, ['class' => 'form-control','placeholder' => 'Actividad Económica', 'required' => $is_custom_field_4_required]); !!}
+				            {!! Form::label('custom_field_actividad', 'Actividad Económica' ) !!}
+				            {!! Form::text('custom_field_actividad', null, ['class' => 'form-control','placeholder' => 'Actividad Económica', 'required' => $is_custom_field_4_required]); !!}
 				        </div>
 				    </div>
 		        @endif

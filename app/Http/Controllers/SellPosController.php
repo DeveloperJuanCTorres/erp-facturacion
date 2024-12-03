@@ -464,6 +464,27 @@ class SellPosController extends Controller
                     $input['additional_expense_value_4'] = $request->input('additional_expense_value_4');
                 }
 
+                //campos perzonalizados VIVA SEGUROS
+                if ($request->input('custom_field_categoria') != '') {
+                    $input['custom_field_categoria'] = $request->input('custom_field_categoria');
+                }
+                if ($request->input('custom_field_fabricacion') != '') {
+                    $input['custom_field_fabricacion'] = $request->input('custom_field_fabricacion');
+                }
+                if ($request->input('custom_field_carroceria') != '') {
+                    $input['custom_field_carroceria'] = $request->input('custom_field_carroceria');
+                }
+                if ($request->input('custom_field_uso') != '') {
+                    $input['custom_field_uso'] = $request->input('custom_field_uso');
+                }
+                if ($request->input('custom_field_poliza') != '') {
+                    $input['custom_field_poliza'] = $request->input('custom_field_poliza');
+                }
+                if ($request->input('custom_field_actividad') != '') {
+                    $input['custom_field_actividad'] = $request->input('custom_field_actividad');
+                }
+                //fin
+                
                 $input['selling_price_group_id'] = $price_group_id;
 
                 if ($this->transactionUtil->isModuleEnabled('tables')) {
