@@ -33,16 +33,44 @@
           @endif
         @endif
         @if(!empty($custom_labels['sell']['custom_field_1']))
-          <br><strong>{{$custom_labels['sell']['custom_field_1'] ?? ''}}: </strong> {{$sell->custom_field_1}}
+          @if($sell->custom_field_1!='')
+            <br><strong>{{$custom_labels['sell']['custom_field_1'] ?? ''}}: </strong> {{$sell->custom_field_1}}
+          @endif
         @endif
         @if(!empty($custom_labels['sell']['custom_field_2']))
-          <br><strong>{{$custom_labels['sell']['custom_field_2'] ?? ''}}: </strong> {{$sell->custom_field_2}}
+          @if($sell->custom_field_2!='')
+            <br><strong>{{$custom_labels['sell']['custom_field_2'] ?? ''}}: </strong> {{$sell->custom_field_2}}
+          @endif
         @endif
         @if(!empty($custom_labels['sell']['custom_field_3']))
-          <br><strong>{{$custom_labels['sell']['custom_field_3'] ?? ''}}: </strong> {{$sell->custom_field_3}}
+          @if($sell->custom_field_3!='')
+            <br><strong>{{$custom_labels['sell']['custom_field_3'] ?? ''}}: </strong> {{$sell->custom_field_3}}
+          @endif
         @endif
         @if(!empty($custom_labels['sell']['custom_field_4']))
-          <br><strong>{{$custom_labels['sell']['custom_field_4'] ?? ''}}: </strong> {{$sell->custom_field_4}}
+          @if($sell->custom_field_4!='')
+            <br><strong>{{$custom_labels['sell']['custom_field_4'] ?? ''}}: </strong> {{$sell->custom_field_4}}
+          @endif
+        @endif
+
+        <!-- VIVA SEGUROS -->
+        @if($sell->custom_field_categoria!='')
+          <br><strong>Categoría: </strong> {{$sell->custom_field_categoria}}
+        @endif
+        @if($sell->custom_field_fabricacion!='')
+          <br><strong>Año de Fabricación: </strong> {{$sell->custom_field_fabricacion}}
+        @endif
+        @if($sell->custom_field_carroceria!='')
+          <br><strong>Carrocería: </strong> {{$sell->custom_field_carroceria}}
+        @endif
+        @if($sell->custom_field_uso!='')
+          <br><strong>Uso: </strong> {{$sell->custom_field_uso}}
+        @endif
+        @if($sell->custom_field_poliza!='')
+          <br><strong>Poliza: </strong> {{$sell->custom_field_poliza}}
+        @endif
+        @if($sell->custom_field_actividad!='')
+          <br><strong>Actividad Económica: </strong> {{$sell->custom_field_actividad}}
         @endif
 
         @if(!empty($sales_orders))
