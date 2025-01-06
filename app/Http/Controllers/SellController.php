@@ -2227,7 +2227,7 @@ class SellController extends Controller
             $numero_modifica = "";
             $tipo_nota_credito = "";
             $cliente_tipo_doc = "";
-            $cliente_name = "";
+            $cliente_name = $contact->name;
 
             $products = [];
             $total_gravada = 0;
