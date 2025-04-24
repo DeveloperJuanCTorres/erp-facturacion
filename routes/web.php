@@ -262,6 +262,10 @@ Route::middleware(['setData', 'auth', 'SetSessionData', 'language', 'timezone', 
     Route::get('/invoice-schemes/set_default/{id}', [InvoiceSchemeController::class, 'setDefault']);
     Route::resource('invoice-schemes', InvoiceSchemeController::class);
 
+    //mostrar invoice juankrlos
+    Route::get('/obtener-invoice/{invoice}', [InvoiceSchemeController::class, 'obtenerInvoice']);
+    //fin mostrar invoice
+
     //Print Labels
     Route::get('/labels/show', [LabelsController::class, 'show']);
     Route::get('/labels/add-product-row', [LabelsController::class, 'addProductRow']);
@@ -344,7 +348,7 @@ Route::middleware(['setData', 'auth', 'SetSessionData', 'language', 'timezone', 
 
     //Printers...
     Route::resource('printers', PrinterController::class);
-
+    
     Route::get('/stock-adjustments/remove-expired-stock/{purchase_line_id}', [StockAdjustmentController::class, 'removeExpiredStock']);
     Route::post('/stock-adjustments/get_product_row', [StockAdjustmentController::class, 'getProductRow']);
     Route::resource('stock-adjustments', StockAdjustmentController::class);

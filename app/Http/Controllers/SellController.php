@@ -690,7 +690,10 @@ class SellController extends Controller
 
         $pos_settings = empty($business_details->pos_settings) ? $this->businessUtil->defaultPosSettings() : json_decode($business_details->pos_settings, true);
 
-        $invoice_schemes = InvoiceScheme::forDropdown($business_id);
+        // $invoice_schemes = InvoiceScheme::forDropdown($business_id);
+        $invoice_schemes = InvoiceScheme::where('business_id',$business_id)->get();
+
+
         $default_invoice_schemes = InvoiceScheme::getDefault($business_id);
         if (! empty($default_location) && !empty($default_location->sale_invoice_scheme_id)) {
             $default_invoice_schemes = InvoiceScheme::where('business_id', $business_id)
@@ -2217,6 +2220,9 @@ class SellController extends Controller
             $id = $request->id;
             $tipo_nota_value = $request->motivo_id;
             $transaction = Transaction::find($id);
+
+            $business_location = BusinessLocation::find($transaction->location_id);
+
             $contact = Contact::find($transaction->contact_id);
             $invoice = $transaction->invoice_no;
             $invoice_sus = intval(substr($invoice, 6, 3));
@@ -2233,12 +2239,15 @@ class SellController extends Controller
             $total_gravada = 0;
             $total_igv = 0;
 
+            $tipo_serie = substr($invoice, 0, 3);
+
             if($transaction->type == "sell")
             {
-                if ($serie == 'FFF1') {
+                
+                if ($tipo_serie == 'FFF') {
                     $tipo_comprobante = 1;
                     $cliente_tipo_doc = 6;                    
-                }elseif($serie == "BBB1")
+                }elseif($tipo_serie == "BBB")
                 {
                     $tipo_comprobante = 2;   
                     if ($contact->contact_id == "-")      
@@ -2250,16 +2259,6 @@ class SellController extends Controller
                         $cliente_tipo_doc = 1; 
                     }                                       
                 }
-
-                // if ($contact->type == "supplier")
-                // {
-                //     $cliente_name = $contact->supplier_business_name;
-                // }
-
-                // if ($contact->type == "customer")
-                // {
-                //     $cliente_name = $contact->name;
-                // }
 
                 $query = TransactionSellLine::leftJoin('products','transaction_sell_lines.product_id','=','products.id')
                 ->join('units', 'products.unit_id', '=', 'units.id')
@@ -2281,13 +2280,11 @@ class SellController extends Controller
                         "descripcion"=> $value->product,
                         "cantidad"=> $value->quantity,
                         "valor_unitario"=> $valor_unitario,
-                        //  number_format($value->unit_price,2),
                         "precio_unitario"=> ($value->unit_price_inc_tax),
                         "descuento"=> "",
                         "subtotal"=> ($valor_unitario*$value->quantity),
                         "tipo_de_igv"=> 1,
                         "igv"=> $igv,
-                        // number_format(($value->item_tax*$value->quantity),2)
                         "total"=> ($value->unit_price_inc_tax*$value->quantity),
                         "anticipo_regularizacion"=> false,
                         "anticipo_documento_serie"=> "",
@@ -2306,9 +2303,10 @@ class SellController extends Controller
                 $transaction_modificar = Transaction::find($transaction->return_parent_id);
                 $invoice_modificar = $transaction_modificar->invoice_no;
                 $numero_modifica = intval(substr($invoice_modificar, 6, 3));
-                if ($serie == 'FFF1') {
+                
+                if ($tipo_serie == 'FFF') {
                     $tipo_documento_modifica = 1;                    
-                }elseif($serie == "BBB1")
+                }elseif($tipo_serie == "BBB")
                 {
                     $tipo_documento_modifica = 2;
                 }   
@@ -2384,7 +2382,6 @@ class SellController extends Controller
 
             }      
             
-            // $total_igv = round(($total_gravada*0.18),2);
             $date_now = Carbon::now()->format('d-m-Y');
             $store = array(
                 "operacion"=> "generar_comprobante",
@@ -2443,15 +2440,15 @@ class SellController extends Controller
                 "servicios_region_selva"=> "",
                 "items" => $products
                 
-            );
-           
-            // $respuesta = Http::withHeaders(
-            //     ['Authorization' => 'ae08473db907470eacd76306bb8c3edd8d287017bfc345ddbe0e10755d4da85e'])
-            // ->post('https://api.nubefact.com/api/v1/9f7c7c55-9c54-4096-af7b-43690e4750e6', $store);  
+            );           
             
+            // $respuesta = Http::withHeaders(
+            //     ['Authorization' => $business[0]['token_nubefact']])
+            // ->post($business[0]['ruta_nubefact'], $store);
+
             $respuesta = Http::withHeaders(
-                ['Authorization' => $business[0]['token_nubefact']])
-            ->post($business[0]['ruta_nubefact'], $store);
+                ['Authorization' => $business_location->token_nubefact])
+            ->post($business_location->ruta_nubefact, $store);
 
             if ($respuesta->status()==200) {
                 $transaction->response_sunat = $respuesta;
@@ -2464,14 +2461,13 @@ class SellController extends Controller
             else
             {
                 $resp = json_decode($respuesta);
-                return response()->json(['status' => false, 'msg' => $contact->type . $resp->errors . json_encode($store)]);
+                return response()->json(['status' => false, 'msg' => 'Por favor inténtele más tarde']);
+                
             }
 
 
         } catch (\Throwable $th) {
-            
-            // return response()->json(['status' => false, 'msg' => "Error!!, Try again later"]);
-            return response()->json(['status' => false, 'msg' => $business[0]['token_nubefact']]);
+            return response()->json(['status' => false, 'msg' => $th->getMessage()]);
         }
        
     }

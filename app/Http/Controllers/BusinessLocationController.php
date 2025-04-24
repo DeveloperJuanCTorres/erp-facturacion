@@ -92,7 +92,7 @@ class BusinessLocationController extends Controller
                 ->rawColumns([11])
                 ->make(false);
         }
-
+        
         return view('business_location.index');
     }
 

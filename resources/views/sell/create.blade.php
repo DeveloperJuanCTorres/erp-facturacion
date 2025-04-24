@@ -39,9 +39,9 @@
 					<i class="fa fa-map-marker"></i>
 				</span>
 			{!! Form::select('select_location_id', $business_locations, $default_location->id ?? null, ['class' => 'form-control input-sm',
-			'id' => 'select_location_id', 
+			'id' => 'select_location_id', 'name' => 'select_location_id', 'onChange' => 'leerLocation()',
 			'required', 'autofocus'], $bl_attributes); !!}
-			<span class="input-group-addon">
+				<span class="input-group-addon">
 					@show_tooltip(__('tooltip.sale_location'))
 				</span> 
 			</div>
@@ -229,8 +229,11 @@
 				@if($sale_type != 'sales_order')
 					<div class="col-sm-3">
 						<div class="form-group">
-							{!! Form::label('invoice_scheme_id', __('invoice.invoice_scheme') . ':') !!}
-							{!! Form::select('invoice_scheme_id', $invoice_schemes, $default_invoice_schemes->id, ['class' => 'form-control select2', 'placeholder' => __('messages.please_select')]); !!}
+							{!! Form::label('invoice_scheme_id', __('invoice.invoice_scheme') . ':') !!}							
+							<select name="invoice_scheme_id" id="invoice_scheme_id" class="form-control select2">								
+								
+							</select>
+							<!-- {!! Form::select('invoice_scheme_id', $invoice_schemes, $default_invoice_schemes->id, ['class' => 'form-control select2', 'placeholder' => __('messages.please_select')]); !!} -->
 						</div>
 					</div>
 				@endif
@@ -949,6 +952,24 @@
     	<script src="{{ asset('js/restaurant.js?v=' . $asset_v) }}"></script>
     @endif
     <script type="text/javascript">
+		window.onload = function() {
+			leerLocation();
+		}
+		function leerLocation(){
+			var select = document.getElementById("select_location_id");
+			let locacion_id = select.value;
+			console.log(locacion_id);
+			$.ajax({
+                url: '/obtener-invoice/' + locacion_id,
+                type: 'GET',
+                success: function (data) {
+                    $('#invoice_scheme_id').empty();
+                    $.each(data, function (key, value) {
+                        $('#invoice_scheme_id').append('<option value="' + value.id + '">' + value.name + '</option>');
+                    });
+                }
+            });
+		}
     	$(document).ready( function() {
     		$('#status').change(function(){
     			if ($(this).val() == 'final') {

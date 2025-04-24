@@ -114,3 +114,23 @@
 	@endif
 @endsection
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+<script>
+	window.onload = function() {
+			leerLocation();
+		}
+		function leerLocation(){
+			var select = document.getElementById("select_location_id");
+			let locacion_id = select.value;
+			console.log(locacion_id);
+			$.ajax({
+                url: '/obtener-invoice/' + locacion_id,
+                type: 'GET',
+                success: function (data) {
+                    $('#invoice_scheme_id').empty();
+                    $.each(data, function (key, value) {
+                        $('#invoice_scheme_id').append('<option value="' + value.id + '">' + value.name + '</option>');
+                    });
+                }
+            });
+		}
+</script>

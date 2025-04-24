@@ -33,7 +33,7 @@
             @if(count($business_locations) > 1)
             <div style="width: 28%;margin-bottom: 5px;">
                {!! Form::select('select_location_id', $business_locations, $default_location->id ?? null , ['class' => 'form-control input-sm',
-                'id' => 'select_location_id', 
+                'id' => 'select_location_id', 'onChange' => 'leerLocation()', 
                 'required', 'autofocus'], $bl_attributes); !!}
             </div>
             @else

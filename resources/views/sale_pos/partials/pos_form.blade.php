@@ -158,9 +158,12 @@
 		@endphp
 		<div class="col-md-4 col-sm-6">
 			<div class="form-group">
-				{!! Form::select('invoice_scheme_id', $invoice_schemes, $invoice_scheme_id, 
+			<select name="invoice_scheme_id" id="invoice_scheme_id" class="form-control select2">								
+								
+			</select>
+				<!-- {!! Form::select('invoice_scheme_id', $invoice_schemes, $invoice_scheme_id, 
 					['class' => 'form-control', 'placeholder' => __('lang_v1.select_invoice_scheme'), 
-					'id' => 'invoice_scheme_id']); !!}
+					'id' => 'invoice_scheme_id']); !!} -->
 			</div>
 		</div>
 	@endif
