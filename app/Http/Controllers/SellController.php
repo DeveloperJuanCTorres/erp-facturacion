@@ -2462,7 +2462,7 @@ class SellController extends Controller
             else
             {
                 $resp = json_decode($respuesta);
-                return response()->json(['status' => false, 'msg' => $respuesta]);
+                return response()->json(['status' => false, 'msg' => $date_now]);
                 
             }
 
