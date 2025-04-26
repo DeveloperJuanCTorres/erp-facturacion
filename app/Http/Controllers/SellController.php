@@ -2383,7 +2383,7 @@ class SellController extends Controller
             }      
             
             // $date_now = Carbon::now()->format('d-m-Y');
-            $date_now = $transaction->transaction_date->format('d-m-Y');
+            $date_now = Carbon::parse($transaction->transaction_date)->format('d-m-Y');
             $store = array(
                 "operacion"=> "generar_comprobante",
                 "tipo_de_comprobante"=> $tipo_comprobante,
