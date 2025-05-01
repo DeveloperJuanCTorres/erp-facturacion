@@ -2441,31 +2441,27 @@ class SellController extends Controller
                 "servicios_region_selva"=> "",
                 "items" => $products
                 
-            );           
-            
+            );     
+
             // $respuesta = Http::withHeaders(
-            //     ['Authorization' => $business[0]['token_nubefact']])
-            // ->post($business[0]['ruta_nubefact'], $store);
+            //     ['Authorization' => $business_location->token_nubefact])
+            // ->post($business_location->ruta_nubefact, $store);
 
-            $respuesta = Http::withHeaders(
-                ['Authorization' => $business_location->token_nubefact])
-            ->post($business_location->ruta_nubefact, $store);
+            // if ($respuesta->status()==200) {
+            //     $transaction->response_sunat = $respuesta;
+            //     $transaction->status_sunat = 1;
+            //     $resp = json_decode($respuesta);
+            //     $transaction->save();
 
-            if ($respuesta->status()==200) {
-                $transaction->response_sunat = $respuesta;
-                $transaction->status_sunat = 1;
-                $resp = json_decode($respuesta);
-                $transaction->save();
-
-                return response()->json(['status' => true, 'msg' => $resp->sunat_description]);
-            }
-            else
-            {
-                $resp = json_decode($respuesta);
-                return response()->json(['status' => false, 'msg' => $respuesta->body()]);
+            //     return response()->json(['status' => true, 'msg' => $resp->sunat_description]);
+            // }
+            // else
+            // {
+            //     $resp = json_decode($respuesta);
+            //     return response()->json(['status' => false, 'msg' => $respuesta->body()]);
                 
-            }
-
+            // }
+            return response()->json(['status' => true, 'msg' => $date_now]);
 
         } catch (\Throwable $th) {
             return response()->json(['status' => false, 'msg' => $th->getMessage()]);
