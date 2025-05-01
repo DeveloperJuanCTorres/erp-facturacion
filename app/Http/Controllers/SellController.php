@@ -2443,25 +2443,25 @@ class SellController extends Controller
                 
             );     
 
-            // $respuesta = Http::withHeaders(
-            //     ['Authorization' => $business_location->token_nubefact])
-            // ->post($business_location->ruta_nubefact, $store);
+            $respuesta = Http::withHeaders(
+                ['Authorization' => $business_location->token_nubefact])
+            ->post($business_location->ruta_nubefact, $store);
 
-            // if ($respuesta->status()==200) {
-            //     $transaction->response_sunat = $respuesta;
-            //     $transaction->status_sunat = 1;
-            //     $resp = json_decode($respuesta);
-            //     $transaction->save();
+            if ($respuesta->status()==200) {
+                $transaction->response_sunat = $respuesta;
+                $transaction->status_sunat = 1;
+                $resp = json_decode($respuesta);
+                $transaction->save();
 
-            //     return response()->json(['status' => true, 'msg' => $resp->sunat_description]);
-            // }
-            // else
-            // {
-            //     $resp = json_decode($respuesta);
-            //     return response()->json(['status' => false, 'msg' => $respuesta->body()]);
+                return response()->json(['status' => true, 'msg' => $resp->sunat_description]);
+            }
+            else
+            {
+                $resp = json_decode($respuesta);
+                return response()->json(['status' => false, 'msg' => $respuesta->body()]);
                 
-            // }
-            return response()->json(['status' => true, 'msg' => $date_now]);
+            }
+
 
         } catch (\Throwable $th) {
             return response()->json(['status' => false, 'msg' => $th->getMessage()]);
