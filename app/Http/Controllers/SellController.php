@@ -2458,8 +2458,8 @@ class SellController extends Controller
             else
             {
                 $resp = json_decode($respuesta);
-                return response()->json(['status' => false, 'msg' => $respuesta->body()]);
-                
+                // return response()->json(['status' => false, 'msg' => $respuesta->body()]);
+                return response()->json(['status' => false, 'msg' => $respuesta->body() .'- api - ' . $store]);
             }
 
 
