@@ -44,37 +44,37 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-5 col-sm-5 col-xs-12 right-col eq-height-col">
-                <div class="row">
-                <div class="col-md-3 col-xs-4" style="text-align: left;">
+            <div class="col-md-5 col-sm-5 col-xs-12 right-col">
+                <div class="">
+                <!-- <div class="col-md-3 col-xs-4" style="text-align: left;">
                     <select class="form-control input-sm" id="change_lang" style="margin: 10px;">
-                    @foreach(config('constants.langs') as $key => $val)
-                        <option value="{{$key}}" 
-                            @if( (empty(request()->lang) && config('app.locale') == $key) 
+                    foreach(config('constants.langs') as $key => $val)
+                        <option value="$key" 
+                            if( (empty(request()->lang) && config('app.locale') == $key) 
                             || request()->lang == $key) 
                                 selected 
-                            @endif
+                            endif
                         >
-                            {{$val['full_name']}}
+                            $val['full_name']
                         </option>
-                    @endforeach
+                    endforeach
                     </select>
-                </div>
-                <div class="col-md-9 col-xs-8" style="text-align: right;padding-top: 10px;">
-                    @if(!($request->segment(1) == 'business' && $request->segment(2) == 'register'))
-                        <!-- Register Url -->
-                        @if(config('constants.allow_registration'))
+                </div> -->
+                <!-- <div class="col-md-9 col-xs-8" style="text-align: right;padding-top: 10px;">
+                    if(!($request->segment(1) == 'business' && $request->segment(2) == 'register'))
+                     
+                        if(config('constants.allow_registration'))
                             <a href="{{ route('business.getRegister') }}@if(!empty(request()->lang)){{'?lang=' . request()->lang}} @endif" class="btn bg-maroon btn-flat" ><b>{{ __('business.not_yet_registered')}}</b> {{ __('business.register_now') }}</a>
-                            <!-- pricing url -->
-                            @if(Route::has('pricing') && config('app.env') != 'demo' && $request->segment(1) != 'pricing')
+                            
+                            if(Route::has('pricing') && config('app.env') != 'demo' && $request->segment(1) != 'pricing')
                                 &nbsp; <a href="{{ action([\Modules\Superadmin\Http\Controllers\PricingController::class, 'index']) }}">@lang('superadmin::lang.pricing')</a>
-                            @endif
-                        @endif
-                    @endif
-                    @if($request->segment(1) != 'login')
+                            endif
+                        endif
+                    endif
+                    if($request->segment(1) != 'login')
                         &nbsp; &nbsp;<span class="text-white">{{ __('business.already_registered')}} </span><a href="{{ action([\App\Http\Controllers\Auth\LoginController::class, 'login']) }}@if(!empty(request()->lang)){{'?lang=' . request()->lang}} @endif">{{ __('business.sign_in') }}</a>
-                    @endif
-                </div>
+                    endif
+                </div> -->
                 
                 @yield('content')
                 </div>

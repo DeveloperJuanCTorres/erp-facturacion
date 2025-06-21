@@ -2,8 +2,9 @@
 @section('title', __('lang_v1.login'))
 
 @section('content')
-    <div class="login-form col-md-12 col-xs-12 right-col-content">
-        <img class="row" style="display: block;margin-left: auto;margin-right: auto;" width="50%" src="{{asset('images/logo-blanco.png')}}" alt="grupotyg">
+    <div class="login-form right-col-content">
+        <img style="display: block;margin: auto;;" width="50%" src="{{asset('images/iconologin.png')}}" alt="grupotyg">
+      
         <p class="form-header text-white">@lang('lang_v1.login')</p>
         <form method="POST" action="{{ route('login') }}" id="login-form">
             {{ csrf_field() }}
@@ -59,12 +60,14 @@
                 </div>
             </div>
             <br>
-            <div class="form-group">
+            <div class="form-group text-center">
                 <button type="submit" class="btn btn-primary btn-flat btn-login">@lang('lang_v1.login')</button>
-                @if(config('app.env') != 'demo')
-                <a href="{{ route('password.request') }}" class="pull-right">
-                    @lang('lang_v1.forgot_your_password')
-                </a>
+                <div class="row" style="margin-top: 20px;">
+                    @if(config('app.env') != 'demo')
+                    <a href="{{ route('password.request') }}" class="">
+                        @lang('lang_v1.forgot_your_password')
+                    </a>
+                </div>
             @endif
             </div>
         </form>
