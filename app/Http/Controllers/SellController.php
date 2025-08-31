@@ -2225,7 +2225,7 @@ class SellController extends Controller
 
             $contact = Contact::find($transaction->contact_id);
             $invoice = $transaction->invoice_no;
-            $invoice_sus = intval(substr($invoice, 6, 3));
+            $invoice_sus = intval(substr(strrchr($invoice, "-"), 1));
             $serie = substr($invoice, 0, 4);
             $tipo_comprobante = 0;
             $tipo_documento_modifica = "";
