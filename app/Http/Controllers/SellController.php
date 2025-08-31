@@ -2459,7 +2459,7 @@ class SellController extends Controller
             {
                 $resp = json_decode($respuesta);
                 $test = json_encode($store);
-                return response()->json(['status' => false, 'msg' => $respuesta->body() + $test]);
+                return response()->json(['status' => false, 'msg' => $respuesta->body() . $test]);
             }
 
 
