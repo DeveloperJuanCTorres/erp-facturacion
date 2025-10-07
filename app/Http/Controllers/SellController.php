@@ -106,6 +106,15 @@ class SellController extends Controller
                 $sells->whereIn('transactions.location_id', $permitted_locations);
             }
 
+            // Mostrar solo ventas con invoice_no que empiece con BBB o FFF para admin@admin.com
+            if (auth()->user()->email == 'admin@admin.com') {
+                $sells->where(function ($q) {
+                    $q->where('transactions.invoice_no', 'like', 'BBB%')
+                    ->orWhere('transactions.invoice_no', 'like', 'FFF%');
+                });
+            }
+
+
             //Add condition for created_by,used in sales representative sales report
             if (request()->has('created_by')) {
                 $created_by = request()->get('created_by');
