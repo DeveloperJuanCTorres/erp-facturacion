@@ -1884,6 +1884,11 @@ class SellController extends Controller
                 }
             }
 
+            $sells->where(function ($q) {
+                $q->where('transactions.invoice_no', 'like', 'BBB%')
+                ->orWhere('transactions.invoice_no', 'like', 'FFF%');
+            });
+
             $sells->groupBy('transactions.id');
 
             if (! empty(request()->suspended)) {
