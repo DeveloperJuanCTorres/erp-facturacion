@@ -1944,12 +1944,21 @@ class SellController extends Controller
                 ->addColumn(
                     'type',
                     '
-                    @if($type == "sell")  
-                        Factura electrónica
-                    @elseif($type == "sell_return")
-                        Nota de crédito
-                    @endif
-                    &nbsp;'  
+                    @php
+                        $tipo = "";
+                        if ($type == "sell") {
+                            if (Str::startsWith($invoice_no, "BBB")) {
+                                $tipo = "Boleta Electrónica";
+                            } elseif (Str::startsWith($invoice_no, "FFF")) {
+                                $tipo = "Factura Electrónica";
+                            } else {
+                                $tipo = "Factura Electrónica";
+                            }
+                        } elseif ($type == "sell_return") {
+                            $tipo = "Nota de Crédito";
+                        }
+                    @endphp
+                    {{$tipo}}&nbsp;'
                 )
                 ->addColumn(
                     'pdf',
