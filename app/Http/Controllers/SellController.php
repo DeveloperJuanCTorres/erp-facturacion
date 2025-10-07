@@ -107,12 +107,15 @@ class SellController extends Controller
                 $sells->whereIn('transactions.location_id', $permitted_locations);
             }
 
-            // Mostrar solo ventas con invoice_no que empiece con BBB o FFF para admin@...
-            if (Str::startsWith(auth()->user()->email, 'admin@')) {
-                $sells->where(function ($q) {
-                    $q->where('transactions.invoice_no', 'like', 'BBB%')
-                    ->orWhere('transactions.invoice_no', 'like', 'FFF%');
-                });
+            // Mostrar solo ventas con invoice_no que empiece con BBB o FFF para roles que empiecen con "Admin SUNAT"
+            if (auth()->user()->roles->isNotEmpty()) {
+                $roleName = auth()->user()->roles->first()->name; // toma el primer rol
+                if (Str::startsWith($roleName, 'Admin SUNAT')) {
+                    $sells->where(function ($q) {
+                        $q->where('transactions.invoice_no', 'like', 'BBB%')
+                        ->orWhere('transactions.invoice_no', 'like', 'FFF%');
+                    });
+                }
             }
 
 
