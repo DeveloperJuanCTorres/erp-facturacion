@@ -445,13 +445,24 @@
 					</p>
 				</div>
 			@endif
+
+			@php
+				$total = str_replace('S/.', '', $receipt_details->total);
+				$total = floatval(trim($total));
+
+				$subtotal = $total / 1.18;
+
+				$igv = $total - ($total / 1.18);
+			@endphp
+
 			@if(empty($receipt_details->hide_price))
             <div class="flex-box">
                 <p class="left text-left">
                 	<strong>{!! $receipt_details->subtotal_label !!}</strong>
                 </p>
                 <p class="width-50 text-right">
-                	<strong>{{$receipt_details->subtotal}}</strong>
+                	<!-- <strong>{{$receipt_details->subtotal}}</strong> -->
+					<strong>S/. {{ number_format($subtotal, 2) }}</strong>
                 </p>
             </div>
 
@@ -550,6 +561,18 @@
 					</p>
 				</div>
 			@endif
+			
+			<!-- IGV -->
+			 
+
+			<div class="flex-box">
+				<p class="width-50 text-left">
+					<strong>IGV:</strong>
+				</p>
+				<p class="width-50 text-right">
+					<strong>{{ number_format($igv, 2) }}</strong>
+				</p>
+			</div>
 
 			<div class="flex-box">
 				<p class="width-50 text-left">
