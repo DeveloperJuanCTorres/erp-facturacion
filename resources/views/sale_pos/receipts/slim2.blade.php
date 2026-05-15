@@ -562,8 +562,7 @@
 				</div>
 			@endif
 			
-			<!-- IGV -->
-			 
+			<!-- IGV -->			 
 
 			<div class="flex-box">
 				<p class="width-50 text-left">

@@ -453,12 +453,23 @@
 							</td>
 						</tr>
 					@endif
+
+					@php
+						$total = str_replace('S/.', '', $receipt_details->total);
+						$total = floatval(trim($total));
+
+						$subtotal = $total / 1.18;
+
+						$igv = $total - ($total / 1.18);
+					@endphp
+
 					<tr>
 						<th style="width:70%">
 							{!! $receipt_details->subtotal_label !!}
 						</th>
 						<td class="text-right">
-							{{$receipt_details->subtotal}}
+							<!-- {{$receipt_details->subtotal}} -->
+							 S/. {{ number_format($subtotal, 2) }}
 						</td>
 					</tr>
 					@if(!empty($receipt_details->total_exempt_uf))
@@ -567,6 +578,16 @@
 							</td>
 						</tr>
 					@endif
+
+					<!-- IGV -->		 
+					<tr>
+						<th>
+							IGV:
+						</th>
+						<td class="text-right">
+							{{ number_format($igv, 2) }}
+						</td>
+					</tr>
 
 					<!-- Total -->
 					<tr>
