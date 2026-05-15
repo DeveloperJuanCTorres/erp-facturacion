@@ -2462,7 +2462,7 @@ class SellController extends Controller
                 "medio_de_pago"=> "",
                 "placa_vehiculo"=> "",
                 "orden_compra_servicio"=> "",  
-                "formato_de_pdf"=> "TICKET",
+                "formato_de_pdf"=> "A4",
                 "generado_por_contingencia"=> "",
                 "bienes_region_selva"=> "",
                 "servicios_region_selva"=> "",
