@@ -2283,7 +2283,7 @@ class SellController extends Controller
                     }
                     else
                     {
-                        $cliente_tipo_doc = 6; 
+                        $cliente_tipo_doc = 1; 
                     }                                       
                 }
 
