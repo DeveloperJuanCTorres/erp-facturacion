@@ -2276,7 +2276,8 @@ class SellController extends Controller
                     $cliente_tipo_doc = 6;                    
                 }elseif($tipo_serie == "BBB")
                 {
-                    $tipo_comprobante = 2;   
+                    // $tipo_comprobante = 2;   
+                    $tipo_comprobante = 6;  
                     if ($contact->contact_id == "-")      
                     {
                         $cliente_tipo_doc = "-"; 
