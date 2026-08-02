@@ -1899,7 +1899,9 @@ class SellController extends Controller
 
             $sells->where(function ($q) {
                 $q->where('transactions.invoice_no', 'like', 'BBB%')
-                ->orWhere('transactions.invoice_no', 'like', 'FFF%');
+                ->orWhere('transactions.invoice_no', 'like', 'FFF%')
+                ->orWhere('transactions.invoice_no', 'like', 'B00%')
+                ->orWhere('transactions.invoice_no', 'like', 'F00%');
             });
 
             $sells->groupBy('transactions.id');
