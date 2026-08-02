@@ -2273,10 +2273,11 @@ class SellController extends Controller
             if($transaction->type == "sell")
             {
                 
-                if ($tipo_serie == 'FFF') {
+                // if ($tipo_serie == 'FFF') {
+                if (in_array($tipo_serie, ['FFF', 'F00'])) {
                     $tipo_comprobante = 1;
                     $cliente_tipo_doc = 6;                    
-                }elseif($tipo_serie == "BBB")
+                }elseif (in_array($tipo_serie, ['BBB', 'B00']))
                 {
                     $tipo_comprobante = 2;   
                     if ($contact->contact_id == "-")      
@@ -2333,9 +2334,9 @@ class SellController extends Controller
                 $invoice_modificar = $transaction_modificar->invoice_no;
                 $numero_modifica = intval(substr($invoice_modificar, 6, 3));
                 
-                if ($tipo_serie == 'FFF') {
+                if (in_array($tipo_serie, ['FFF', 'F00'])) {
                     $tipo_documento_modifica = 1;                    
-                }elseif($tipo_serie == "BBB")
+                }elseif (in_array($tipo_serie, ['BBB', 'B00']))
                 {
                     $tipo_documento_modifica = 2;
                 }   
