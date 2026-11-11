@@ -73,3 +73,11 @@
 @if(!empty($__system_settings['additional_css']))
     {!! $__system_settings['additional_css'] !!}
 @endif
+
+
+@if(!isset($pos_layout) || !$pos_layout)
+    <link
+        rel="stylesheet"
+        href="{{ asset('css/erp-touch.css?v='.$asset_v) }}"
+    >
+@endif

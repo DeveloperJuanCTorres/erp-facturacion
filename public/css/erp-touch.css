@@ -1,0 +1,373 @@
+/* ERP Touch UI — Fase 1 consolidada | AdminLTE 2 | Solo layout normal */
+body.erp-touch {
+  --etu-bg:#0e1b30; --etu-panel:#14243b; --etu-hover:#203653;
+  --etu-text:#dce7f5; --etu-muted:#93a8c2; --etu-border:#2b3f5b;
+  --etu-accent:#3b82f6; --etu-active:#224a87;
+  --etu-width:230px; --etu-header-height:64px;
+}
+body.erp-touch.erp-touch-light {
+  --etu-bg:#fff; --etu-panel:#f3f6fb; --etu-hover:#eaf0f9;
+  --etu-text:#25344b; --etu-muted:#66778d; --etu-border:#e1e7f0;
+  --etu-accent:#2563eb; --etu-active:#dbeafe;
+}
+body.erp-touch .main-sidebar {background:var(--etu-bg)!important;border-right:1px solid var(--etu-border);box-shadow:3px 0 18px rgba(0,0,0,.07)}
+body.erp-touch .main-sidebar .sidebar {background:transparent!important;padding-bottom:24px}
+body.erp-touch .sidebar-menu {padding:12px 9px!important;background:transparent!important}
+body.erp-touch .sidebar-menu>li {margin:3px 0!important}
+body.erp-touch .sidebar-menu>li>a {display:flex!important;align-items:center;min-height:48px;padding:11px 13px!important;border:0!important;border-radius:10px;color:var(--etu-text)!important;background:transparent!important;font-size:13px;font-weight:500;gap:11px;touch-action:manipulation;transition:background .16s,color .16s}
+body.erp-touch .sidebar-menu>li>a>i:first-child {width:20px;min-width:20px;text-align:center;font-size:16px;color:var(--etu-muted)}
+body.erp-touch .sidebar-menu>li>a>span:not(.pull-right-container) {flex:1;min-width:0;white-space:normal;line-height:1.35}
+body.erp-touch .sidebar-menu>li>a>.pull-right-container {position:static!important;transform:none!important;margin-left:auto;flex:none}
+body.erp-touch .sidebar-menu>li:hover>a,body.erp-touch .sidebar-menu>li.menu-open>a {background:var(--etu-hover)!important;color:var(--etu-text)!important}
+body.erp-touch .sidebar-menu>li.active>a {background:var(--etu-active)!important;color:var(--etu-text)!important;font-weight:700}
+body.erp-touch.erp-touch-dark .sidebar-menu>li.active>a {color:#fff!important}
+body.erp-touch .sidebar-menu>li.active>a>i:first-child {color:var(--etu-accent)!important}
+body.erp-touch .sidebar-menu .treeview-menu {background:var(--etu-panel)!important;border-radius:9px;margin:3px 0 7px;padding:5px 0 5px 12px!important}
+body.erp-touch .sidebar-menu .treeview-menu>li>a {display:flex;align-items:center;gap:9px;min-height:44px;padding:10px 12px!important;color:var(--etu-muted)!important;white-space:normal;border-radius:8px;margin-right:5px;touch-action:manipulation}
+body.erp-touch .sidebar-menu .treeview-menu>li>a>i {width:17px;flex:none;text-align:center}
+body.erp-touch .sidebar-menu .treeview-menu>li.active>a,body.erp-touch .sidebar-menu .treeview-menu>li>a:hover {background:var(--etu-hover)!important;color:var(--etu-text)!important}
+body.erp-touch .sidebar-menu>li.header {background:transparent!important;color:var(--etu-muted)!important;font-size:10px;letter-spacing:.09em}
+body.erp-touch .etu-tools {padding:12px 13px 6px;border-bottom:1px solid var(--etu-border)}
+body.erp-touch .etu-theme-toggle {width:100%;min-height:44px;display:flex;align-items:center;justify-content:center;gap:10px;border:1px solid var(--etu-border);background:var(--etu-panel);color:var(--etu-text);border-radius:9px;font-size:12px;font-weight:600;cursor:pointer;touch-action:manipulation}
+body.erp-touch .etu-theme-toggle:focus-visible,body.erp-touch .sidebar-menu a:focus-visible {outline:3px solid var(--etu-accent);outline-offset:2px}
+/* Branding: una única regla de tamaño; la calidad depende de la imagen original. */
+body.erp-touch .main-header .logo.etu-header-brand {display:flex;align-items:center;gap:9px;padding:8px 12px;box-sizing:border-box;overflow:hidden;position:relative;text-align:left;text-decoration:none;line-height:normal;background:#172b49!important;color:#fff!important}
+body.erp-touch .etu-header-brand-img {display:block;flex:0 0 46px;width:46px;height:46px;min-width:46px;object-fit:contain;object-position:center;border:0;border-radius:0;background:transparent!important;padding:0!important;margin:0}
+body.erp-touch .etu-header-brand-fallback {display:flex;align-items:center;justify-content:center;flex:0 0 46px;width:46px;height:46px;border-radius:9px;background:#2563eb;color:#fff}
+body.erp-touch .etu-header-brand-info {min-width:0;flex:1;display:flex;flex-direction:column;justify-content:center}
+body.erp-touch .etu-header-brand-name {font-size:14px;font-weight:700;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.erp-touch .etu-header-brand-subtitle {font-size:10px;color:#a9bed9;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.erp-touch .etu-online-indicator {position:absolute;top:6px;right:7px;font-size:7px}
+body.erp-touch.erp-touch-light .main-header .logo.etu-header-brand {background:#fff!important;color:#172b49!important;border-right:1px solid #e5eaf2}
+body.erp-touch.erp-touch-light .etu-header-brand-subtitle {color:#64748b}
+@media(min-width:768px) {
+ body.erp-touch .main-header {height:var(--etu-header-height);max-height:none}
+ body.erp-touch .main-header .logo.etu-header-brand {width:var(--etu-width);height:var(--etu-header-height);min-height:var(--etu-header-height)}
+ body.erp-touch .main-header .navbar {margin-left:var(--etu-width);height:var(--etu-header-height);min-height:var(--etu-header-height)}
+ body.erp-touch .main-header .sidebar-toggle {height:var(--etu-header-height);display:flex;align-items:center;justify-content:center}
+ body.erp-touch .main-header .navbar-custom-menu {height:var(--etu-header-height);display:flex;align-items:center}
+ body.erp-touch .main-header .navbar-custom-menu>.btn,body.erp-touch .main-header .navbar-custom-menu>.btn-group>.btn {margin-top:0!important;margin-bottom:0!important}
+ body.erp-touch .main-header .navbar-custom-menu>.navbar-nav>li>a {min-height:var(--etu-header-height);display:flex;align-items:center}
+ body.erp-touch .main-sidebar {width:var(--etu-width);padding-top:var(--etu-header-height)}
+ body.erp-touch .content-wrapper,body.erp-touch .main-footer {margin-left:var(--etu-width)}
+ body.erp-touch.sidebar-collapse .main-header .logo.etu-header-brand {width:50px;padding:4px;justify-content:center}
+ body.erp-touch.sidebar-collapse .main-header .navbar,body.erp-touch.sidebar-collapse .content-wrapper,body.erp-touch.sidebar-collapse .main-footer {margin-left:50px}
+ body.erp-touch.sidebar-collapse .main-sidebar {width:50px}
+ body.erp-touch.sidebar-collapse .etu-header-brand-info,body.erp-touch.sidebar-collapse .etu-online-indicator {display:none}
+ body.erp-touch.sidebar-collapse .etu-header-brand-img,body.erp-touch.sidebar-collapse .etu-header-brand-fallback {width:40px;height:40px;min-width:40px;flex-basis:40px}
+ body.erp-touch.sidebar-collapse .main-sidebar .etu-theme-label {display:none}
+ body.erp-touch.sidebar-collapse .main-sidebar .etu-tools {padding:8px 3px}
+ body.erp-touch.sidebar-collapse .main-sidebar .etu-theme-toggle {width:40px;margin:auto}
+ body.erp-touch.sidebar-collapse .main-sidebar .sidebar-menu>li>a {justify-content:center;padding:11px 8px!important}
+ body.erp-touch.sidebar-collapse .main-sidebar .sidebar-menu>li>a>i:first-child {margin:0}
+ body.erp-touch.sidebar-collapse .main-sidebar .sidebar-menu>li>a>span:not(.pull-right-container),body.erp-touch.sidebar-collapse .main-sidebar .sidebar-menu>li>a>.pull-right-container {display:none}
+
+}
+@media(max-width:767px) {
+ body.erp-touch .main-header {max-height:none}
+ body.erp-touch .main-header .logo.etu-header-brand {width:100%;height:64px;justify-content:center}
+ body.erp-touch .main-header .navbar {margin-left:0;min-height:50px}
+ body.erp-touch .main-sidebar {width:230px;padding-top:114px}
+ body.erp-touch .content-wrapper,body.erp-touch .main-footer {margin-left:0}
+ body.erp-touch .sidebar-menu>li>a {min-height:52px}
+ body.erp-touch .sidebar-menu .treeview-menu>li>a {min-height:48px}
+}
+@media(prefers-reduced-motion:reduce) {body.erp-touch .sidebar-menu>li>a {transition:none}}
+
+
+
+/* ==========================================
+   ERP TOUCH - SIDEBAR COMPACTO DEFINITIVO
+   AdminLTE 2
+========================================== */
+
+@media (min-width: 768px) {
+
+    body.erp-touch.sidebar-collapse {
+        --etu-compact: 68px;
+        --etu-button: 52px;
+        --etu-row: 52px;
+        --etu-flyout: 210px;
+    }
+
+    /* Estructura del sidebar */
+
+    body.erp-touch.sidebar-collapse .main-sidebar {
+        width: var(--etu-compact) !important;
+        overflow: visible !important;
+    }
+
+    body.erp-touch.sidebar-collapse .main-sidebar .sidebar {
+        overflow: visible !important;
+    }
+
+    body.erp-touch.sidebar-collapse .main-header .logo.etu-header-brand {
+        width: var(--etu-compact) !important;
+    }
+
+    body.erp-touch.sidebar-collapse .main-header .navbar,
+    body.erp-touch.sidebar-collapse .content-wrapper,
+    body.erp-touch.sidebar-collapse .main-footer {
+        margin-left: var(--etu-compact) !important;
+    }
+
+    body.erp-touch.sidebar-collapse .sidebar-menu {
+        width: var(--etu-compact) !important;
+        padding: 12px 0 !important;
+        overflow: visible !important;
+    }
+
+    body.erp-touch.sidebar-collapse .sidebar-menu > li {
+        position: relative !important;
+        width: 68px !important;
+        margin: 3px 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Botones e iconos */
+
+    body.erp-touch.sidebar-collapse .sidebar-menu > li > a {
+        position: relative !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        width: var(--etu-button) !important;
+        height: var(--etu-row) !important;
+        min-height: var(--etu-row) !important;
+
+        padding: 0 !important;
+        margin: 0 auto !important;
+        gap: 0 !important;
+
+        border-radius: 11px !important;
+        box-sizing: border-box !important;
+    }
+
+    body.erp-touch.sidebar-collapse
+    .sidebar-menu > li > a > i:first-child {
+        position: static !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        flex: 0 0 22px !important;
+        width: 22px !important;
+        min-width: 22px !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+        transform: none !important;
+        text-align: center !important;
+    }
+
+    body.erp-touch.sidebar-collapse
+    .sidebar-menu > li > a > .pull-right-container {
+        display: none !important;
+    }
+
+    /* Titulo flotante.
+       El enlace comienza en 8px dentro del LI.
+       Por eso left:60px equivale a 68px. */
+
+    body.erp-touch.sidebar-collapse
+    .sidebar-menu > li > a > span:not(.pull-right-container) {
+        display: none !important;
+        position: absolute !important;
+
+        top: 0 !important;
+        left: 60px !important;
+        right: auto !important;
+
+        width: var(--etu-flyout) !important;
+        height: 40px !important;
+
+        margin: 0 !important;
+        padding: 0 14px !important;
+
+        flex: none !important;
+        align-items: center !important;
+
+        background: var(--etu-panel) !important;
+        color: var(--etu-text) !important;
+
+        border: 0 !important;
+        border-radius: 10px 10px 0 0 !important;
+
+        box-shadow: none !important;
+        box-sizing: border-box !important;
+
+        white-space: normal !important;
+        line-height: 1.3 !important;
+        font-weight: 600 !important;
+
+        z-index: 1101 !important;
+    }
+
+    body.erp-touch.sidebar-collapse
+    .sidebar-menu > li:hover > a > span:not(.pull-right-container),
+    body.erp-touch.sidebar-collapse
+    .sidebar-menu > li:focus-within > a > span:not(.pull-right-container) {
+        display: flex !important;
+    }
+
+    /* Opciones del submenú */
+
+    body.erp-touch.sidebar-collapse
+    .sidebar-menu > li > .treeview-menu {
+        display: none;
+        position: absolute !important;
+
+        top: 40px !important;
+        left: 68px !important;
+        right: auto !important;
+
+        width: var(--etu-flyout) !important;
+
+        margin: 0 !important;
+        padding: 5px 6px 7px !important;
+
+        background: var(--etu-panel) !important;
+
+        border: 0 !important;
+        border-radius: 0 0 10px 10px !important;
+
+        box-shadow: 4px 10px 22px rgba(0,0,0,.20);
+        box-sizing: border-box !important;
+
+        z-index: 1100 !important;
+    }
+
+    body.erp-touch.sidebar-collapse
+    .sidebar-menu > li:hover > .treeview-menu,
+    body.erp-touch.sidebar-collapse
+    .sidebar-menu > li:focus-within > .treeview-menu {
+        display: block !important;
+    }
+
+    body.erp-touch.sidebar-collapse
+    .sidebar-menu > li > .treeview-menu > li > a {
+        display: flex !important;
+        align-items: center !important;
+
+        min-height: 40px !important;
+        margin: 0 !important;
+        padding: 9px 12px !important;
+
+        line-height: 1.3 !important;
+        white-space: normal !important;
+        border-radius: 7px !important;
+    }
+
+    body.erp-touch.sidebar-collapse
+    .sidebar-menu > li:hover {
+        z-index: 1200 !important;
+    }
+
+    /* Botón del tema */
+
+    body.erp-touch.sidebar-collapse .main-sidebar .etu-tools {
+        padding: 8px 6px !important;
+    }
+
+    body.erp-touch.sidebar-collapse .main-sidebar .etu-theme-toggle {
+        width: 56px !important;
+        min-height: 48px !important;
+        margin: 0 auto !important;
+    }
+}
+
+
+
+/* ==========================================
+   ERP TOUCH UI
+   CORRECCIÓN DE HOVER EN SUBMENÚ FLOTANTE
+========================================== */
+
+@media (min-width: 768px) {
+
+    /* Evitar que AdminLTE desplace el título */
+    body.erp-touch.sidebar-mini.sidebar-collapse
+    .sidebar-menu > li:hover > a > span:not(.pull-right-container),
+
+    body.erp-touch.sidebar-mini.sidebar-collapse
+    .sidebar-menu > li:focus-within > a > span:not(.pull-right-container) {
+
+        position: absolute !important;
+
+        top: 0 !important;
+        left: 60px !important;
+        right: auto !important;
+        bottom: auto !important;
+
+        width: 210px !important;
+        height: 40px !important;
+        min-height: 40px !important;
+
+        margin: 0 !important;
+        padding: 0 14px !important;
+
+        display: flex !important;
+        align-items: center !important;
+
+        transform: none !important;
+
+        background: var(--etu-panel) !important;
+        border-radius: 10px 10px 0 0 !important;
+
+        box-sizing: border-box !important;
+    }
+
+    /* Evitar desplazamientos del panel al hacer hover */
+    body.erp-touch.sidebar-mini.sidebar-collapse
+    .sidebar-menu > li:hover > .treeview-menu,
+
+    body.erp-touch.sidebar-mini.sidebar-collapse
+    .sidebar-menu > li:focus-within > .treeview-menu {
+
+        position: absolute !important;
+
+        top: 40px !important;
+        left: 68px !important;
+        right: auto !important;
+        bottom: auto !important;
+
+        width: 210px !important;
+
+        margin: 0 !important;
+        transform: none !important;
+
+        box-sizing: border-box !important;
+    }
+
+    /* Eliminar decoraciones del título */
+    body.erp-touch.sidebar-mini.sidebar-collapse
+    .sidebar-menu > li > a > span:not(.pull-right-container)::before,
+
+    body.erp-touch.sidebar-mini.sidebar-collapse
+    .sidebar-menu > li > a > span:not(.pull-right-container)::after {
+        content: none !important;
+        display: none !important;
+    }
+}
+
+
+
+/* =========================================
+   ERP TOUCH UI - ADMINLTE 2
+   Ocultar indicador original en menú compacto
+   ========================================= */
+
+body.erp-touch.sidebar-mini.sidebar-collapse
+.main-sidebar .sidebar-menu > li.treeview > a
+> .pull-right-container {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* Mantener el título flotante alineado */
+body.erp-touch.sidebar-mini.sidebar-collapse
+.main-sidebar .sidebar-menu > li.treeview > a > span:not(.pull-right-container) {
+    top: 0 !important;
+    margin-top: 0 !important;
+}

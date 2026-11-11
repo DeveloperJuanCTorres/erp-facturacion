@@ -1,11 +1,44 @@
 @inject('request', 'Illuminate\Http\Request')
 <!-- Main Header -->
   <header class="main-header no-print">
-    <a href="{{route('home')}}" class="logo">
+    <!-- <a href="{{route('home')}}" class="logo">
       
       <span class="logo-lg">{{ Session::get('business.name') }} <i class="fa fa-circle text-success" id="online_indicator"></i></span> 
 
+    </a> -->
+
+
+    <a href="{{ route('home') }}" class="logo etu-header-brand">
+
+        @if(!empty(Session::get('business.logo')))
+            <img
+                src="{{ asset('uploads/business_logos/' . Session::get('business.logo')) }}"
+                alt="Logo de {{ Session::get('business.name') }}"
+                class="etu-header-brand-img"
+            >
+        @else
+            <span class="etu-header-brand-fallback">
+                <i class="fas fa-building"></i>
+            </span>
+        @endif
+
+        <span class="etu-header-brand-info">
+            <span class="etu-header-brand-name">
+                {{ Session::get('business.name') }}
+            </span>
+
+            <small class="etu-header-brand-subtitle">
+                By FacTyG
+            </small>
+        </span>
+
+        <i
+            class="fa fa-circle text-success etu-online-indicator"
+            id="online_indicator"
+        ></i>
+
     </a>
+
 
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top" role="navigation">

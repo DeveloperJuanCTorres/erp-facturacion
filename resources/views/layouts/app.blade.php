@@ -33,7 +33,7 @@
         @yield('css')
     </head>
 
-    <body class="@if($pos_layout) hold-transition lockscreen @else hold-transition skin-@if(!empty(session('business.theme_color'))){{session('business.theme_color')}}@else{{'blue-light'}}@endif sidebar-mini @endif">
+    <body class="@if($pos_layout) hold-transition lockscreen @else hold-transition skin-@if(!empty(session('business.theme_color'))){{session('business.theme_color')}}@else{{'blue-light'}}@endif sidebar-mini erp-touch erp-touch-dark @endif">
         <div class="wrapper thetop">
             <script type="text/javascript">
                 if(localStorage.getItem("upos_sidebar_collapse") == 'true'){
@@ -127,6 +127,10 @@
             @foreach($__additional_views as $additional_view)
                 @includeIf($additional_view)
             @endforeach
+        @endif
+
+        @if(!$pos_layout)
+            <script src="{{ asset('js/erp-touch.js?v='.$asset_v) }}"></script>
         @endif
     </body>
 

@@ -110,8 +110,8 @@
             </li>
             <li class="hero-nav__item d-lg-none d-flex flex-row-reverse">
                 <button open-nav-menu="" class="text-center px-2">
-                    <i class="fas fa-bars"></i>
-                </button>
+                    <i class="fas fa-bars"></i> 
+                </button> 
             </li>
         </ul>
     </nav>
